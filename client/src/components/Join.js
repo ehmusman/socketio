@@ -9,7 +9,7 @@ const Join = () => {
                 <div className="col-4 ">
                     <div className="card ">
                         <div className="card-header">
-                            Sign In
+                            Join Chat
                         </div>
                         <div className="card-body">
                             <form className="form-group">

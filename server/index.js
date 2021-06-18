@@ -6,11 +6,24 @@ dotenv.config()
 const app = express()
 const router = require("./router")
 const server = http.createServer(app)
+const cors = require("cors")
 
-const io = socketio(server)
+const { getUser, getUserInRoom, removeUser, addUser } = require("./users")
+
+app.use(cors())
+
+const io = require("socket.io")(server, {
+    cors: {
+        origin: "http://localhost:3000",
+        methods: ["GET", "POST"]
+    }
+});
 io.on("connection", socket => {
     console.log("We have a new Connection !!!")
 
+    socket.on("join", ({ name, room }) => {
+        console.log(name, room)
+    })
     socket.on("disconnect", () => {
         console.log("User Had Left!!!")
     })
